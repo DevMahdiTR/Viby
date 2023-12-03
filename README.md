@@ -37,14 +37,18 @@ To explore the Viby prototype, follow these steps:
    git clone https://github.com/your_username/Viby.git
    cd Viby
 # Navigate to the project directory
-      ```bash
-      cd viby-backend
+   ```bash
+   cd viby-backend
+   ```
+
 # Install required dependencies
-       ```bash
-      mvn clean install
+   ```bash
+   mvn clean install
+```
 # Run the Spring Boot application
-       ```bash
-      mvn spring-boot:run
+   ```bash
+   mvn spring-boot:run
+   ```
 
 Important: Although blockchain integration is pending, the Viby backend leverages the full power of Spring, emphasizing security and design considerations.
 Future Development
