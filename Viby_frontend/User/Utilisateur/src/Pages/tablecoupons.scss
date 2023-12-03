@@ -1,0 +1,56 @@
+.table{
+    width : 100%;
+    display: flex;
+    margin-top: 5em;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    gap: 1.2em;
+    .table__container{
+        box-shadow: 1px 4px 4px 4px rgba(255,255,255,0.1);
+        overflow: hidden;
+        border-radius: 10px;
+        width: 250px;
+        height:250px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        img{
+            overflow: hidden;
+            width: 250px !important;
+            height: 250px !important;
+            object-fit: cover;
+            transition: all 0.4s ease;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+        
+        .hh{
+            position: absolute;
+            font-family: "Poppins" , sans-serif;
+            font-weight: 500;
+            font-size: 25px;
+            bottom: 0;
+            right: 0;
+            z-index: 100;
+            color : #fff;
+        }
+        .aa{
+            background-color: #bebaba53;
+            padding: 0.25em 1em;
+            border-radius: 10px;
+            z-index: 100;
+            position: absolute;
+            font-family: "Poppins" , sans-serif;
+            font-weight: 500;
+            font-size: 30px;
+            bottom: 40px;
+            right: 10px;
+            color : #fff;
+        }
+    }
+}
+.ffff{
+    margin-top: -7em !important;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #reader {
+
+            border-radius: 20px;
+            width: 900px;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main style="display: flex; flex-direction: column; align-items: center;">
+        <div id="reader"></div>
+        <div id="result"></div>
+
+        <a style="padding: 0.5em 1em; color:#fff; font-family:Poppins, sans-sarif; background-color: #000; border-radius: 20px; font-size: 20px; margin-top: 1em; text-decoration: none;" href="http://localhost:3002/"  rel="noopener noreferrer"><h3>Back Home</h3></a>
+    </main>
+
+    <script>
+        const html5Qrcode = new Html5Qrcode('reader');
+
+        function onScanSuccess(qrCodeMessage) {
+            document.getElementById('result').innerHTML = `
+                <h2>Success!!</h2>
+                <p>${qrCodeMessage}</p>
+                
+            `;
+            html5Qrcode.clear();
+
+
+        }
+
+
+// Initialize scannedQRs from sessionStorage or as an empty object
+const scannedQRs = JSON.parse(sessionStorage.getItem('scannedQRs')) || {};
+
+
+function onScanError(qrCodeError) {
+    console.error(qrCodeError);
+
+    // Check if the error message is not a duplicate
+    if (!scannedQRs[qrCodeError]) {
+        const resultElement = document.getElementById('result');
+        const errorListItem = document.createElement('li');
+        errorListItem.textContent = `${qrCodeError}`;
+        errorCount++;
+
+        // Create the error list if it doesn't exist
+        let errorList = document.querySelector('#error-list');
+        if (!errorList) {
+            errorList = document.createElement('ol'); // Use <ol> for an ordered (numbered) list
+            errorList.setAttribute('id', 'error-list');
+            resultElement.appendChild(errorList);
+        }
+
+        // Add the error message to the list and mark it as seen
+        errorList.appendChild(errorListItem);
+        scannedQRs[qrCodeError] = true;
+
+        // Save scannedQRs in sessionStorage
+        sessionStorage.setItem('scannedQRs', JSON.stringify(scannedQRs));
+    }
+}
+
+// Initialize the errorCount based on the number of saved errors
+errorCount = Object.keys(scannedQRs).length + 1;
+
+
+        
+
+
+
+        html5Qrcode.start(
+            { facingMode: 'environment' }, // Use 'user' for the front camera
+            onScanSuccess,
+            onScanError
+        );
+    </script>
+</body>
+
+</html>
