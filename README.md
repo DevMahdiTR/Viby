@@ -37,11 +37,11 @@ To explore the Viby prototype, follow these steps:
    git clone https://github.com/your_username/Viby.git
    cd Viby
 # Navigate to the project directory
-    #cd viby-backend
+   cd viby-backend
 # Install required dependencies
-    #mvn clean install
+   mvn clean install
 # Run the Spring Boot application
-    #mvn spring-boot:run
+   mvn spring-boot:run
 Future Development
 While the current prototype lays the foundation, future development will focus on:
 
